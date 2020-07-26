@@ -33,8 +33,8 @@ globber = (folder, pattern, callback) => {
     }
 }
 
-loadHelpers = (inputPath) => {
-    var folder = path.dirname(inputPath);
+loadHelpers = (options) => {
+    var folder = path.dirname(options.input);
     globber(folder, "**/*.helper.js", (m) => {
         var helper = fs.readFileSync(m).toString();
         var name = path.parse(m).name.split(".")[0];
@@ -96,7 +96,7 @@ setTimeout(() => {
                 console.log(`Template '${options.template}' does not exist`);
                 return;
             }
-            loadHelpers(options.input);
+            loadHelpers(options);
             globTransform(options, spinner);
             complete(options, spinner);
         } else {
