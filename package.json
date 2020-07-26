@@ -1,0 +1,33 @@
+{
+  "name": "handlebars-cli",
+  "version": "1.0.0",
+  "description": "A tiny cli for tranforming handlebars templates using yml input files",
+  "main": "bin/hb.js",
+  "bin": {
+    "hb": "./bin/hb.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/RealOrko/handlebars-cli.git"
+  },
+  "keywords": [
+    "handlebars",
+    "cli",
+    "yml"
+  ],
+  "author": "realorko",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/RealOrko/handlebars-cli/issues"
+  },
+  "homepage": "https://github.com/RealOrko/handlebars-cli#readme",
+  "dependencies": {
+    "boxen": "^4.2.0",
+    "chalk": "^4.1.0",
+    "clui": "^0.3.6",
+    "glob": "^7.1.6",
+    "handlebars": "^4.7.6",
+    "yamljs": "^0.3.0",
+    "yargs": "^15.4.1"
+  }
+}
