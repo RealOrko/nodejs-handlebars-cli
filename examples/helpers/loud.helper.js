@@ -1,0 +1,3 @@
+(aString) => {
+    return aString.toUpperCase()
+}
