@@ -6,9 +6,20 @@ A simple implementation of a handlebars CLI with globbing capabilities.
 
 Please first install [nodejs](https://nodejs.org/en/download/package-manager/).
 
+
+### Using the source
+
 ```
 git clone https://github.com/RealOrko/handlebars-cli.git && cd handlebars-cli && npm install -g . && hb --help
 ```
+
+### Using npm
+
+```
+npm install https://github.com/RealOrko/nodejs-handlebars-cli.git -g --force
+```
+
+### Using a package
 
 Or alternatively you can use the latest [published package](https://github.com/RealOrko/nodejs-handlebars-cli/packages/).
 
