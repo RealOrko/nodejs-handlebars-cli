@@ -30,7 +30,7 @@
     "yamljs": "^0.3.0",
     "yargs": "^15.4.1"
   },
-  "publishConfig": { 
-    "registry": "https://npm.pkg.github.com/" 
+  "publishConfig": {
+    "registry": "https://npm.pkg.github.com/"
   }
 }
