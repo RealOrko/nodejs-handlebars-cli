@@ -10,6 +10,8 @@ Please first install [nodejs](https://nodejs.org/en/download/package-manager/).
 git clone https://github.com/RealOrko/handlebars-cli.git && cd handlebars-cli && npm install -g . && hb --help
 ```
 
+Or alternatively you can use the latest [published package](https://github.com/RealOrko/nodejs-handlebars-cli/packages/).
+
 ## Guide
 
 <a href="https://handlebarsjs.com/guide/" target="_blank">handlebarsjs.com/guide</a>
