@@ -6,7 +6,7 @@ A simple implementation of a handlebars CLI with globbing capabilities.
 
 You must make sure you have the following pre-requisites installed:
 
- - [nodejs](https://nodejs.org/en/download/package-manager/).
+ - [nodejs](https://nodejs.org/en/download/package-manager/)
 
 
 #### Using source
