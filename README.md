@@ -2,9 +2,11 @@
 
 A simple implementation of a handlebars CLI with globbing capabilities. 
 
-## Installing
+## Prerequisites
 
-Please first install [nodejs](https://nodejs.org/en/download/package-manager/).
+You must make sure you have the following pre-requisites installed:
+
+ - [nodejs](https://nodejs.org/en/download/package-manager/).
 
 
 #### Using source
