@@ -34,7 +34,7 @@ globber = (folder, pattern, callback) => {
 }
 
 loadHelpers = (options) => {
-    var folder = path.dirname(options.input);
+    var folder = path.dirname(options.template);
     globber(folder, "**/*.helper.js", (m) => {
         var helper = fs.readFileSync(m).toString();
         var name = path.parse(m).name.split(".")[0];
