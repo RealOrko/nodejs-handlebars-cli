@@ -8,6 +8,7 @@ const glob = require("glob");
 const yargs = require("yargs");
 const yamljs = require("yamljs")
 const handlebars = require("handlebars");
+require('handlebars-helpers')({handlebars: handlebars});
 
 header = (options) => {
     if (!options.stdout) {

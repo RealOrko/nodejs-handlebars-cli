@@ -27,6 +27,7 @@
     "clui": "^0.3.6",
     "glob": "^7.1.6",
     "handlebars": "^4.7.6",
+    "handlebars-helpers": "^0.10.0",
     "yamljs": "^0.3.0",
     "yargs": "^15.4.1"
   },
