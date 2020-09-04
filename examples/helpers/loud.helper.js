@@ -1,3 +1,3 @@
 (aString) => {
-    return aString.toUpperCase()
+    return aString;//.toUpperCase()
 }

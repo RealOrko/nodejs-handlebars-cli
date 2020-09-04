@@ -3,7 +3,6 @@
 const fs = require("fs");
 const path = require("path");
 const process = require("process");
-const clui = require("clui");
 const glob = require("glob");
 const yargs = require("yargs");
 const yamljs = require("yamljs")
@@ -19,13 +18,6 @@ header = (options) => {
 getPath = (file) => {
     return path.join(process.cwd(), file);
 }
-
-complete = (options, spinner) => {
-    if (!options.stdout) {
-        console.log("Complete!");
-    }
-    spinner.stop();
-};
 
 globber = (folder, pattern, callback) => {
     const matched = glob.sync(path.join(folder, pattern));
@@ -60,7 +52,7 @@ transform = (templatePath, inputPath, outputPath, stdout) => {
     return result;
 }
 
-globTransform = (options, spinner) => {
+globTransform = (options) => {
     if (!fs.existsSync(options.input)) {
         globber(".", options.input, (m) => {
             var inputName = path.parse(m).name;
@@ -83,28 +75,20 @@ const options = yargs
 
 header(options);
 
-var spinner = new clui.Spinner("Executing ...", ['|','/','-','\\']);
-spinner.start();
-
-setTimeout(() => {
-    if (options.stdout) {
-        spinner.stop();
-    }
-    try {
-        if (options.input && options.template && options.output) {
-            if (!fs.existsSync(options.template)) {
-                complete(options, spinner);
-                console.log(`Template '${options.template}' does not exist`);
-                return;
-            }
-            loadHelpers(options);
-            globTransform(options, spinner);
-            complete(options, spinner);
-        } else {
-            complete(options, spinner);
-            console.log("Invalid options, please use '--help'");
+if (options.stdout) {
+    spinner.stop();
+}
+try {
+    if (options.input && options.template && options.output) {
+        if (!fs.existsSync(options.template)) {
+            console.log(`Template '${options.template}' does not exist`);
+            return;
         }
-    } catch(err) {
-        console.log(err);
+        loadHelpers(options);
+        globTransform(options, spinner);
+    } else {
+        console.log("Invalid options, please use '--help'");
     }
-}, 500);
+} catch(err) {
+    console.log(err);
+}
