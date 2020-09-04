@@ -42,30 +42,56 @@ hb --help
 #### Single transform
 
 ```
-hb -t examples/array.yml.hbs -i examples/array.yml -o examples/out.output
+hb -t examples/bands.yml.hbs -i examples/bands.yml -o build/single-template-with-single-input-with-file-output/bands.yml
+hb -t examples/fruits.yml.hbs -i examples/fruits.yml -o build/single-template-with-single-input-with-file-output/fruits.yml
 ```
 
-#### Folder transform
+#### Single transform (stdout)
 
 ```
-hb -t examples/array.yml.hbs -i examples/**/*.yml
+hb -t examples/bands.yml.hbs -i examples/bands.yml -s true > build/single-template-with-single-input-with-std-output/bands.yml
+hb -t examples/fruits.yml.hbs -i examples/fruits.yml -s true > build/single-template-with-single-input-with-std-output/fruits.yml
 ```
 
-#### Folder transform with custom extension
+#### Single template transform with glob inputs
 
 ```
-hb -t examples/array.yml.hbs -i examples/**/*.yml -e .output
+hb -t examples/bands.yml.hbs -i examples/**/*.yml -o build/single-template-with-glob-input-with-file-output/bands.yml
+hb -t examples/fruits.yml.hbs -i examples/**/*.yml -o build/single-template-with-glob-input-with-file-output/fruits.yml
 ```
 
-#### Stdout transform
+
+#### Single template transform with glob inputs (stdout)
 
 ```
-hb -t examples/array.yml.hbs -i examples/array.yml -s true
+hb -t examples/bands.yml.hbs -i examples/**/*.yml -s true > build/single-template-with-glob-input-with-std-output/bands.yml
+hb -t examples/fruits.yml.hbs -i examples/**/*.yml -s true > build/single-template-with-glob-input-with-std-output/fruits.yml
 ```
 
-#### Stdout folder transform (merge)
+#### Multiple template transform with single input
 
 ```
-hb -t examples/array.yml.hbs -i examples/**/*.yml -s true
-hb -t examples/**/*.yml.hbs -i examples/array.yml -s true
+hb -t examples/**/*.yml.hbs -i examples/all.yml -o build/glob-template-with-single-input-with-file-output/bands.yml
+hb -t examples/**/*.yml.hbs -i examples/all.yml -o build/glob-template-with-single-input-with-file-output/fruits.yml
+```
+
+#### Multiple template transform with single input (stdout)
+
+```
+hb -t examples/**/*.yml.hbs -i examples/all.yml -s true > build/glob-template-with-single-input-with-std-output/bands.yml
+hb -t examples/**/*.yml.hbs -i examples/all.yml -s true > build/glob-template-with-single-input-with-std-output/fruits.yml
+```
+
+#### Multiple template transform with multiple inputs
+
+```
+hb -t examples/**/*.yml.hbs -i examples/**/*.yml -o build/glob-template-with-glob-input-with-file-output/bands.yml
+hb -t examples/**/*.yml.hbs -i examples/**/*.yml -o build/glob-template-with-glob-input-with-file-output/fruits.yml
+```
+
+#### Multiple template transform with multiple inputs (stdout)
+
+```
+hb -t examples/**/*.yml.hbs -i examples/**/*.yml -s true > build/glob-template-with-glob-input-with-std-output/bands.yml
+hb -t examples/**/*.yml.hbs -i examples/**/*.yml -s true > build/glob-template-with-glob-input-with-std-output/fruits.yml
 ```

@@ -10,12 +10,6 @@ const handlebars = require("handlebars");
 const { templates } = require("handlebars");
 require('handlebars-helpers')({ handlebars: handlebars });
 
-header = (options) => {
-  if (!options.stdout) {
-    console.log("hb (https://github.com/RealOrko/handlebars-cli)");
-  }
-}
-
 getPath = (file) => {
   return path.join(process.cwd(), file);
 }
@@ -49,7 +43,7 @@ transform = (template, input) => {
   var inputYaml = yamljs.parse(input);
   var compiled = handlebars.compile(template);
   var result = compiled(inputYaml);
-  return result;
+  return result.trim();
 }
 
 processTransformOutput = (result, outputPath, stdout) => {
@@ -59,7 +53,6 @@ processTransformOutput = (result, outputPath, stdout) => {
   } else {
     console.log(result);
   }
-  return result;
 }
 
 transformFile = (templatePath, inputPath, outputPath, stdout) => {
@@ -78,15 +71,15 @@ globTransform = (options) => {
     var result = transform(superTemplate, superInput);
     processTransformOutput(result, options.output, options.stdout);
   } else if (!fs.existsSync(options.template)) {
-    globber(".", options.template, (m) => {
-      var inputName = path.parse(m).name;
-      transformFile(m, options.input, path.join(options.output, inputName + options.extension), options.stdout);
-    });
+    var superTemplate = getGlobContents(options.template);
+    var input = fs.readFileSync(options.input).toString();
+    var result = transform(superTemplate, input);
+    processTransformOutput(result, options.output, options.stdout);
   } else if (!fs.existsSync(options.input)) {
-    globber(".", options.input, (m) => {
-      var inputName = path.parse(m).name;
-      transformFile(options.template, m, path.join(options.output, inputName + options.extension), options.stdout);
-    });
+    var template = fs.readFileSync(options.template).toString();
+    var superInput = getGlobContents(options.input);
+    var result = transform(template, superInput);
+    processTransformOutput(result, options.output, options.stdout);
   } else {
     transformFile(options.template, options.input, options.output, options.stdout);
   }
@@ -101,8 +94,6 @@ const options = yargs
   .option("s", { alias: "stdout", describe: "Output transforms to stdout", type: "bool", demandOption: false, default: false })
   .help()
   .argv;
-
-header(options);
 
 try {
   if (options.input && options.template && options.output) {
