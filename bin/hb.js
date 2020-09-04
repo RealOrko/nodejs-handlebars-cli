@@ -53,7 +53,12 @@ transform = (templatePath, inputPath, outputPath, stdout) => {
 }
 
 globTransform = (options) => {
-    if (!fs.existsSync(options.input)) {
+    if (!fs.existsSync(options.template)) {
+      globber(".", options.template, (m) => {
+          var inputName = path.parse(m).name;
+          transform(m, options.input,path.join(options.output, inputName + options.extension), options.stdout);
+      });
+    } else if (!fs.existsSync(options.input)) {
         globber(".", options.input, (m) => {
             var inputName = path.parse(m).name;
             transform(options.template, m, path.join(options.output, inputName + options.extension), options.stdout);
@@ -61,6 +66,10 @@ globTransform = (options) => {
     } else {
         transform(options.template, options.input, options.output, options.stdout);
     }
+}
+
+isGlob = (input) => {
+  return input.lastIndexOf('**') != -1;
 }
 
 const options = yargs
@@ -75,17 +84,10 @@ const options = yargs
 
 header(options);
 
-if (options.stdout) {
-    spinner.stop();
-}
 try {
     if (options.input && options.template && options.output) {
-        if (!fs.existsSync(options.template)) {
-            console.log(`Template '${options.template}' does not exist`);
-            return;
-        }
         loadHelpers(options);
-        globTransform(options, spinner);
+        globTransform(options);
     } else {
         console.log("Invalid options, please use '--help'");
     }

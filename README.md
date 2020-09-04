@@ -67,4 +67,5 @@ hb -t examples/array.yml.hbs -i examples/array.yml -s true
 
 ```
 hb -t examples/array.yml.hbs -i examples/**/*.yml -s true
+hb -t examples/**/*.yml.hbs -i examples/array.yml -s true
 ```
