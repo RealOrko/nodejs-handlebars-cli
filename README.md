@@ -33,6 +33,14 @@ Or alternatively you can use the latest [published package](https://github.com/R
 
 All examples can be run from the root folder for where this repository is checked out.
 
+To see the effects of:
+ - One template to one input
+ - Many templates to one input
+ - One template to many inputs
+ - Many templates to many inputs
+
+Please run `test/test.sh` and navigate to the output in `build/`.
+
 #### Help
 
 ```
