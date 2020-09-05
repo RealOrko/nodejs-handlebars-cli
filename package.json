@@ -22,9 +22,6 @@
   },
   "homepage": "https://github.com/RealOrko/nodejs-handlebars-cli#readme",
   "dependencies": {
-    "boxen": "^4.2.0",
-    "chalk": "^4.1.0",
-    "clui": "^0.3.6",
     "glob": "^7.1.6",
     "handlebars": "^4.7.6",
     "handlebars-helpers": "^0.10.0",

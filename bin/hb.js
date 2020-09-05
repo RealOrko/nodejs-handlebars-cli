@@ -7,7 +7,6 @@ const glob = require("glob");
 const yargs = require("yargs");
 const yamljs = require("yamljs")
 const handlebars = require("handlebars");
-const { templates } = require("handlebars");
 require('handlebars-helpers')({ handlebars: handlebars });
 
 getPath = (file) => {
