@@ -20,19 +20,31 @@ globber = (folder, pattern, callback) => {
   }
 }
 
+ensureFileExists = (filePath) => {
+  if (!fs.existsSync(filePath)) {
+    console.log('File does not exist: ', filePath);
+    process.exit(1);
+  }
+}
+
 getGlobContents = (glob) => {
   var contents = '';
   if (glob.lastIndexOf('*') != -1) {
     globber(".", glob, (m) => {
       var filePath = getPath(m);
+      ensureFileExists(filePath);
       contents += fs.readFileSync(filePath).toString();
     });
   } else if (glob.lastIndexOf(',') != -1) {
     var parts = glob.split(',');
     for (const part of parts) {
       var filePath = getPath(part);
+      ensureFileExists(filePath);
       contents += fs.readFileSync(filePath).toString();
     }
+  } else {
+    console.log('Invalid parameter: ', glob);
+    process.exit(1);
   }
   return contents;
 }
@@ -111,4 +123,5 @@ try {
   }
 } catch (err) {
   console.log(err);
+  process.exit(1);
 }
