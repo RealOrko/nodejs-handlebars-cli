@@ -43,3 +43,8 @@ mkdir -p build/glob-template-with-glob-input-with-std-output
 
 hb -t examples/**/*.yml.hbs -i examples/**/*.yml -s true > build/glob-template-with-glob-input-with-std-output/bands.yml
 hb -t examples/**/*.yml.hbs -i examples/**/*.yml -s true > build/glob-template-with-glob-input-with-std-output/fruits.yml
+
+mkdir -p build/glob-ordered-template-with-glob-input-with-std-output
+
+hb -t examples/bands.yml.hbs,examples/fruits.yml.hbs -i examples/**/*.yml -s true > build/glob-ordered-template-with-glob-input-with-std-output/all.yml
+

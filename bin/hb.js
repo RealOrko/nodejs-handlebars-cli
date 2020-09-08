@@ -22,15 +22,23 @@ globber = (folder, pattern, callback) => {
 
 getGlobContents = (glob) => {
   var contents = '';
-  globber(".", glob, (m) => {
-    var filePath = getPath(m);
-    contents += fs.readFileSync(filePath).toString();
-  });
+  if (glob.lastIndexOf('*') != -1) {
+    globber(".", glob, (m) => {
+      var filePath = getPath(m);
+      contents += fs.readFileSync(filePath).toString();
+    });
+  } else if (glob.lastIndexOf(',') != -1) {
+    var parts = glob.split(',');
+    for (const part of parts) {
+      var filePath = getPath(part);
+      contents += fs.readFileSync(filePath).toString();
+    }
+  }
   return contents;
 }
 
 loadHelpers = (options) => {
-  var folder = path.dirname(options.template);
+  var folder = path.dirname(options.template.split(',')[0]);
   globber(folder, "**/*.helper.js", (m) => {
     var helper = fs.readFileSync(m).toString();
     var name = path.parse(m).name.split(".")[0];
