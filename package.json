@@ -18,7 +18,7 @@
   "author": "realorko",
   "license": "ISC",
   "bugs": {
-    "url": "https://github.com/RealOrko/handlebars-cli/issues"
+    "url": "https://github.com/RealOrko/nodejs-handlebars-cli/issues"
   },
   "homepage": "https://github.com/RealOrko/nodejs-handlebars-cli#readme",
   "dependencies": {
@@ -27,8 +27,5 @@
     "handlebars-helpers": "^0.10.0",
     "yamljs": "^0.3.0",
     "yargs": "^15.4.1"
-  },
-  "publishConfig": {
-    "registry": "https://npm.pkg.github.com/"
   }
 }
