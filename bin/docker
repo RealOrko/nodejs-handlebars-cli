@@ -1,0 +1,9 @@
+#!/usr/bin/env bash
+
+pushd docker
+docker build -t hb-cli .
+docker tag hb-cli realorko/hb-cli:1.0.0
+docker push realorko/hb-cli:1.0.0
+docker tag hb-cli realorko/hb-cli:latest
+docker push realorko/hb-cli:latest
+popd
